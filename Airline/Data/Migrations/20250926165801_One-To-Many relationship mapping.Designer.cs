@@ -4,6 +4,7 @@ using Airline;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Airline.Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    partial class AirlineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250926165801_One-To-Many relationship mapping")]
+    partial class OneToManyrelationshipmapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace Airline.Data.Migrations
 
                     b.HasIndex("AirlineId");
 
-                    b.ToTable("Aircrafts", (string)null);
+                    b.ToTable("Aircrafts");
                 });
 
             modelBuilder.Entity("Airline.Enities.AircraftRoute", b =>
@@ -76,9 +79,7 @@ namespace Airline.Data.Migrations
 
                     b.HasKey("AircraftId", "RouteId", "Departure");
 
-                    b.HasIndex("RouteId");
-
-                    b.ToTable("Aircraft_Routes", (string)null);
+                    b.ToTable("Aircraft_Routes");
                 });
 
             modelBuilder.Entity("Airline.Enities.Airline", b =>
@@ -106,7 +107,7 @@ namespace Airline.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Airlines", (string)null);
+                    b.ToTable("Airlines");
                 });
 
             modelBuilder.Entity("Airline.Enities.AirlinePhones", b =>
@@ -120,7 +121,7 @@ namespace Airline.Data.Migrations
 
                     b.HasKey("AirlineId", "Phone");
 
-                    b.ToTable("Airline_Phones", (string)null);
+                    b.ToTable("Airline_Phones");
                 });
 
             modelBuilder.Entity("Airline.Enities.Employee", b =>
@@ -162,7 +163,7 @@ namespace Airline.Data.Migrations
 
                     b.HasIndex("AirlineId");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("Airline.Enities.EmployeeQualifications", b =>
@@ -176,7 +177,7 @@ namespace Airline.Data.Migrations
 
                     b.HasKey("EmployeeId", "Qualification");
 
-                    b.ToTable("Emp_Qualifications", (string)null);
+                    b.ToTable("Emp_Qualifications");
                 });
 
             modelBuilder.Entity("Airline.Enities.Route", b =>
@@ -205,7 +206,7 @@ namespace Airline.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Routes", (string)null);
+                    b.ToTable("Routes");
                 });
 
             modelBuilder.Entity("Airline.Enities.Transaction", b =>
@@ -235,7 +236,7 @@ namespace Airline.Data.Migrations
 
                     b.HasIndex("AirlineId");
 
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Airline.Enities.Aircraft", b =>
@@ -265,7 +266,7 @@ namespace Airline.Data.Migrations
 
                             b1.HasKey("AircraftId");
 
-                            b1.ToTable("Aircrafts", (string)null);
+                            b1.ToTable("Aircrafts");
 
                             b1.WithOwner()
                                 .HasForeignKey("AircraftId");
@@ -274,21 +275,6 @@ namespace Airline.Data.Migrations
                     b.Navigation("Airline");
 
                     b.Navigation("Crew")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Airline.Enities.AircraftRoute", b =>
-                {
-                    b.HasOne("Airline.Enities.Aircraft", null)
-                        .WithMany("AircraftRoutes")
-                        .HasForeignKey("AircraftId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Airline.Enities.Route", null)
-                        .WithMany("AircraftRoutes")
-                        .HasForeignKey("RouteId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -332,11 +318,6 @@ namespace Airline.Data.Migrations
                     b.Navigation("Airline");
                 });
 
-            modelBuilder.Entity("Airline.Enities.Aircraft", b =>
-                {
-                    b.Navigation("AircraftRoutes");
-                });
-
             modelBuilder.Entity("Airline.Enities.Airline", b =>
                 {
                     b.Navigation("Aircrafts");
@@ -351,11 +332,6 @@ namespace Airline.Data.Migrations
             modelBuilder.Entity("Airline.Enities.Employee", b =>
                 {
                     b.Navigation("Qualifications");
-                });
-
-            modelBuilder.Entity("Airline.Enities.Route", b =>
-                {
-                    b.Navigation("AircraftRoutes");
                 });
 #pragma warning restore 612, 618
         }

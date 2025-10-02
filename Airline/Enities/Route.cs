@@ -13,5 +13,7 @@ namespace Airline.Enities
         [Required]
         public string Origin { get; set; }
         public string Classification { get; set; }
+        public virtual ICollection<AircraftRoute> AircraftRoutes { get; set; }
+
     }
 }

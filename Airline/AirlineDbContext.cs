@@ -9,7 +9,8 @@ namespace Airline
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=DESKTOP-QK0IFST\\MSSQLSERVERR;Database=Airline02;Trusted_Connection=True;TrustServerCertificate =True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-QK0IFST\\MSSQLSERVERR;Database=Airline02;Trusted_Connection=True;TrustServerCertificate =True")
+                          .UseLazyLoadingProxies();
 
         }
 

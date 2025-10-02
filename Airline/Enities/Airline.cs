@@ -12,5 +12,9 @@ namespace Airline.Enities
         public string Address { get; set; }
         [Column("Cont_person")]
         public string ContactPerson { get; set; }
+        public virtual ICollection<AirlinePhones> Phones { get; set; }
+        public virtual ICollection<Aircraft> Aircrafts { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

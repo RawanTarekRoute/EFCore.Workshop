@@ -9,12 +9,14 @@ namespace Airline.Enities
         public string Address { get; set; }
         public string Position { get; set; }
         [Column("BD_Year")]
-        public int BirthDayYear { get; set; }
+        public int? BirthDayYear { get; set; }
         [Column("BD_Month")]
-        public int BirthDayMonth { get; set; }
+        public int? BirthDayMonth { get; set; }
         [Column("BD_Day")]
-        public int BirthDayDay { get; set; }
-        [Column("AL_Id")]
+        public int? BirthDayDay { get; set; }
         public int AirlineId { get; set; }
+        public virtual Airline Airline { get; set; }
+        public virtual ICollection<EmployeeQualifications> Qualifications { get; set; }
+
     }
 }

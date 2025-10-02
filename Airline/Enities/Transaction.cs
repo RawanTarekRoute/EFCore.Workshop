@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Airline.Enities
 {
@@ -12,8 +11,9 @@ namespace Airline.Enities
         [Precision(18, 2)]
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
-        [Column("AL_Id")]
         public int AirlineId { get; set; }
+        public virtual Airline Airline { get; set; }
+
 
 
     }

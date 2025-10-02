@@ -9,6 +9,6 @@ namespace Airline.Enities
     {
         [Column("AL_Id")]
         public int AirlineId { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
     }
 }
